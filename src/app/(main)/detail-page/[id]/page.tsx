@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { useGetItemByIdQuery, getThumbnailUrl } from '@/store/features/hackerNewsApi';
+import { ChevronRightIcon, HeartIcon } from '@heroicons/react/24/outline';
 
 export default function StoryDetailPage() {
     const params = useParams();
@@ -12,7 +13,7 @@ export default function StoryDetailPage() {
 
     if (isLoading) {
         return (
-            <div className="max-w-3xl mx-auto p-6 animate-pulse">
+            <div className="section-layout">
                 <div className="w-full h-64 bg-gray-200 rounded-xl mb-6" />
                 <div className="h-10 bg-gray-200 rounded w-3/4 mb-4" />
                 <div className="h-4 bg-gray-200 rounded w-1/4" />
@@ -27,46 +28,50 @@ export default function StoryDetailPage() {
     const publishedDate = new Date(story.time * 1000).toLocaleDateString();
 
     return (
-        <main className="max-w-3xl mx-auto p-6">
-            <div className="relative w-full h-80 mb-8 overflow-hidden ">
+        <div className="w-full">
+            <div className="detail-image-area relative h-80 mb-8 overflow-hidden ">
                 <Image
                     src={getThumbnailUrl(id, 800, 500)}
                     alt={story.title}
                     fill
                     priority
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
+                    sizes="100vw, 20vh"
                 />
             </div>
 
-            <article>
-                <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">{story.title}</h1>
+            <article className="section-layout">
+                <h1 className="text-2xl font-extrabold text-gray-900 mb-8 leading-tight">{story.title}</h1>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600 mb-8 border-b pb-4">
-                    <span className="flex items-center gap-1">
-                        <b>By:</b> {story.by}
-                    </span>
-                    <span>•</span>
-                    <span>{publishedDate}</span>
-                    <span>•</span>
-                    <span className="font-bold">Score: {story.score}</span>
+                <div className="article-info flex flex-col gap-2 mb-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <span className="flex items-center gap-1">by {story.by}</span>
+                        <span>•</span>
+                        <span>{publishedDate}</span>
+                    </div>
+                    <div className="flex flex-row items-center gap-2 text-gray-500">
+                        <HeartIcon className="size-5" />
+                        {story.score}
+                    </div>
                 </div>
-
-                {story.url ? (
-                    <a href={story.url} target="_blank" rel="noopener noreferrer" className="font-bold">
-                        Original Article
-                    </a>
-                ) : (
-                    <p className="text-sm text-gray-400 italic">원문 링크가 없는 스토리입니다.</p>
-                )}
             </article>
-
-            <button
-                onClick={() => window.history.back()}
-                className="mt-12 text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2"
-            >
-                목록으로 돌아가기
-            </button>
-        </main>
+            {story.url ? (
+                <div className="to-original section-layout ">
+                    <a
+                        href={story.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className=" w-full bg-gray-900 py-4 rounded-full text-2xl text-white flex items-center justify-center"
+                    >
+                        <div className="flex flex-row items-center gap-2">
+                            <p>ORIGINAL STORY</p>
+                            <ChevronRightIcon className="size-5" />
+                        </div>
+                    </a>
+                </div>
+            ) : (
+                <p className="text-sm text-gray-500">원문 링크가 없는 스토리입니다.</p>
+            )}
+        </div>
     );
 }

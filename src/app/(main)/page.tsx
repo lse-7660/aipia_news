@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react'; // 상태 관리를 위해 추가
+import { useState } from 'react';
 import { useGetStoryIdsQuery } from '@/store/features/hackerNewsApi';
 import StoryItem from './_components/StoryItem';
 
-type StoryType = 'top' | 'new' | 'best';
+const navList = ['top', 'new', 'best'] as const;
+type StoryType = (typeof navList)[number];
 
 export default function Home() {
     const [category, setCategory] = useState<StoryType>('top');
@@ -14,26 +15,29 @@ export default function Home() {
     if (error) return <div>에러가 발생했습니다.</div>;
 
     return (
-        <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-            <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-                <h1>AIPIA NEWS</h1>
+        <div className="main-page section-layout pt-18 md:pt-24 flex flex-col gap-4">
+            <p className="text-2xl md:text-4xl font-bold">DISCOVER</p>
+            <nav className="flex flex-row gap-2">
+                {navList.map((item) => (
+                    <button
+                        key={item}
+                        onClick={() => setCategory(item)}
+                        className={`text-sm w-18 py-1 rounded-full ${category === item ? 'font-medium text-white bg-black' : 'font-regular text-black bg-gray-200'}`}
+                    >
+                        {item.toUpperCase()}
+                    </button>
+                ))}
+            </nav>
 
-                <nav>
-                    <button onClick={() => setCategory('top')}>Top</button>
-                    <button onClick={() => setCategory('new')}>New</button>
-                    <button onClick={() => setCategory('best')}>Best</button>
-                </nav>
-
-                {isLoading || isFetching ? (
-                    <div>데이터 로딩 중...</div>
-                ) : (
-                    <ul>
-                        {ids?.slice(0, 20).map((id) => (
-                            <StoryItem key={id} id={id} />
-                        ))}
-                    </ul>
-                )}
-            </main>
+            {isLoading || isFetching ? (
+                <div>데이터 로딩 중...</div>
+            ) : (
+                <div className="flex flex-col gap-4">
+                    {ids?.slice(0, 20).map((id) => (
+                        <StoryItem key={id} id={id} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
