@@ -1,6 +1,6 @@
-# 🚀 AIPIA NEWS (Hacker News Client)
+# AIPIA NEWS
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### 1. Next.js (App Router)
 ### 2. React + TypeScript
