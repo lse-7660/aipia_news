@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 AIPIA NEWS (Hacker News Client)
 
-## Getting Started
+## 🛠 Tech Stack
 
-First, run the development server:
+### 1. Next.js (App Router)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 2. Redux Toolkit & RTK Query
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    - **RTK Query**: API 호출 구조(ID 리스트 조회 후 개별 아이템 상세 조회)를 효율적으로 관리하고, 자동 캐싱 기능을 통해 불필요한 네트워크 요청을 줄이기 위해 도입했습니다.
+    - **전역 상태 관리**: 상세 페이지에서 '뒤로가기'를 했을 때, 사용자가 이전에 선택한 탭과 스크롤 위치(불러온 데이터 개수)를 그대로 유지하는 UX 일관성을 위해 Redux를 활용했습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Tailwind CSS v4
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌟 Key Features
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Tab-Persistent State**: 상세 페이지 방문 후 뒤로가기 시에도 선택했던 카테고리와 로딩된 리스트 상태가 전역 상태 관리를 통해 완벽하게 보존됩니다.
+- **Infinite Scrolling**: 사용자가 리스트 끝에 도달하면 `Intersection Observer`가 감지하여 자동으로 다음 20개의 아이템을 렌더링합니다.
+- **Responsive Layout**: Tailwind v4를 활용하여 모바일, 태블릿 환경에서 최적화된 화면을 제공합니다.

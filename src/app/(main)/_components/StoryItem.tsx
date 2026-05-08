@@ -19,10 +19,10 @@ export default function StoryItem({ id }: { id: number }) {
                     alt="thumbnail"
                     fill
                     className="rounded-md object-cover bg-gray-200"
-                    sizes="64px"
+                    sizes="120px"
                 />
             </div>
-            <div className="flex-1 flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
                 <h3 className="font-medium text-gray-900 line-clamp-2">{story.title}</h3>
                 <p className="text-sm text-gray-500">@{story.by}</p>
                 <p className="text-sm text-gray-500">{publishedDate}</p>

@@ -28,16 +28,9 @@ export default function StoryDetailPage() {
     const publishedDate = new Date(story.time * 1000).toLocaleDateString();
 
     return (
-        <div className="w-full">
-            <div className="detail-image-area relative h-80 mb-8 overflow-hidden ">
-                <Image
-                    src={getThumbnailUrl(id, 800, 500)}
-                    alt={story.title}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="100vw, 20vh"
-                />
+        <div className="detail-page min-h-full w-full relative">
+            <div className="detail-image-area relative w-full aspect-video mb-8 overflow-hidden ">
+                <Image src={getThumbnailUrl(id, 800, 500)} alt={story.title} fill priority className="object-cover" />
             </div>
 
             <article className="section-layout">
@@ -56,12 +49,12 @@ export default function StoryDetailPage() {
                 </div>
             </article>
             {story.url ? (
-                <div className="to-original section-layout ">
+                <div className="btn-to-original section-layout fixed bottom-10 flex justify-center">
                     <a
                         href={story.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className=" w-full bg-gray-900 py-4 rounded-full text-2xl text-white flex items-center justify-center"
+                        className="max-w-180 w-full bg-gray-900 py-4 rounded-full text-2xl text-white flex items-center justify-center"
                     >
                         <div className="flex flex-row items-center gap-2">
                             <p>ORIGINAL STORY</p>
