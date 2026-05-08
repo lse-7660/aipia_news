@@ -29,7 +29,7 @@ export default function StoryDetailPage() {
 
     return (
         <div className="detail-page min-h-full w-full relative">
-            <div className="detail-image-area relative w-full aspect-video mb-8 overflow-hidden ">
+            <div className="detail-image-area relative w-full aspect-video max-h-[50vh] mb-8 overflow-hidden ">
                 <Image src={getThumbnailUrl(id, 800, 500)} alt={story.title} fill priority className="object-cover" />
             </div>
 
