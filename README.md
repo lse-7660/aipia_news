@@ -2,16 +2,14 @@
 
 ## 🛠 Tech Stack
 
-### Next.js (App Router)
-
-### Redux Toolkit & RTK Query
+### 1. Next.js (App Router)
+### 2. React + TypeScript
+### 3. Redux Toolkit & RTK Query
 
 - RTK Query: API 호출 구조(ID 리스트 조회 후 개별 아이템 상세 조회)를 효율적으로 관리하고, 자동 캐싱 기능을 통해 불필요한 네트워크 요청을 줄이기 위해 도입했습니다.
 - 전역 상태 관리: 상세 페이지에서 '뒤로가기'를 했을 때, 사용자가 이전에 선택한 탭과 스크롤 위치(불러온 데이터 개수)를 그대로 유지하는 UX 일관성을 위해 Redux를 활용했습니다.
 
-### Tailwind CSS v4
-
----
+### 4. Tailwind CSS v4
 
 ## Key Features
 
